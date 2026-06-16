@@ -19,12 +19,17 @@ with conectar() as conn:
                 );
     ''');
     conn.commit()
- 
+
+nome = input("Nome: ")
+curso = input("Curso: ")
+ano = int(input("Ano: "))
+
 with conectar() as conn:
     conn.execute('''
-        INSERT INTO turmas (nome, curso, ano) 
-        VALUES('2 INFO', 'Informática', 2)
-    ''');  
+        INSERT INTO turmas(nome, curso, ano) 
+        VALUES(?,?,?)''',
+        (nome, curso, ano)
+    )
     conn.commit()
 
 conn.close()
